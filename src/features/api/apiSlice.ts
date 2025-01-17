@@ -5,41 +5,20 @@ export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
-    getByAmount: builder.query({
-      query: (amount: any) => {
-        const searchParams = new URLSearchParams(amount).toString();
+    getByParams: builder.query({
+      query: (param: any) => {
+        // This dynamically creates the query string parameters....
+        const searchParams = new URLSearchParams(param).toString();
         return {
-          url: `?amount=${searchParams}`,
+          url: `?${searchParams}`,
           method: "GET",
         };
       },
+      keepUnusedDataFor: 60,
     }),
-    getByCategory: builder.query({
-      query: (category: any) => {
-        const searchParams = new URLSearchParams(category).toString();
-        return {
-          url: `?category=${searchParams}`,
-          method: "GET",
-        };
-      },
-    }),
-    getByDifficulty: builder.query({
-      query: (difficulty: any) => {
-        const searchParams = new URLSearchParams(difficulty).toString();
-        return {
-          url: `?difficulty=${searchParams}`,
-          method: "GET",
-        };
-      },
-    }),
-    getByType: builder.query({
-      query: (type: any) => {
-        const searchParams = new URLSearchParams(type).toString();
-        return {
-          url: `?type=${searchParams}`,
-          method: "GET",
-        };
-      },
-    }),
+    // All you have to do is pass an object with keys corresponding to the query parameters you want say,
+    // { amount: "10", category: "sports", difficulty: "easy", type: 'multiple'}
+    // To make the API call, simply run the following, for example:
+    // const {data, isLoading} = useGetByParamsQuery({amount: "10", category: "sports", difficulty: "easy", type: 'multiple'})
   }),
 });
