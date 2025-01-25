@@ -1,20 +1,63 @@
-import { Box, Flex, Link } from "@chakra-ui/react";
+import { Flex, Link, Text } from "@chakra-ui/react";
 import React from "react";
-import { useColorMode, useColorModeValue } from "../ui/color-mode";
 
-const Navbar: React.FC = () => {
-  // const { toggleColor } = useColorMode();
-  const bg = useColorModeValue('white', 'black');
-  const color = useColorModeValue('black', 'white');
-
+export interface Height {
+  height: string;
+}
+const Navbar: React.FC<Height> = ({ height }) => {
   return (
-    <Box bg={bg} boxShadow="md">
-      <Flex h={16} alignItems='center' justifyContent='space-between'>
-        <Link fontSize='lg' fontWeight='bold' color={color} href="#">TrivQuest</Link>
-        <Link fontSize='lg' fontWeight='bold' color={color} href="#">Trivia</Link>
-        <Link fontSize='lg' fontWeight='bold' color={color} href="#">Quiz</Link>
+    <Flex
+      as="nav"
+      w="100%"
+      h={height}
+      bg="tealBlue"
+      px={24}
+      py={4}
+      color="whitesmoke"
+      align="center"
+      justify="space-between"
+      position="fixed"
+      top={0}
+    >
+      <Text fontSize="28px" fontWeight="bold" color="orange" fontStyle="italic">
+        TrivQuest
+      </Text>
+      <Flex gap={12}>
+        <Link
+          fontSize="sm"
+          fontWeight="bold"
+          color="snowWhite"
+          href="#"
+          _active={{ color: "orange", textDecoration: "none" }}
+          _focus={{ color: "orange", boxShadow: "none" }}
+          _hover={{ color: "orange" }}
+        >
+          Trivia
+        </Link>
+        <Link
+          fontSize="sm"
+          fontWeight="bold"
+          color="snowWhite"
+          href="#"
+          _active={{ color: "orange", textDecoration: "none" }}
+          _focus={{ color: "orange", boxShadow: "none" }}
+          _hover={{ color: "orange" }}
+        >
+          Quiz
+        </Link>
+        <Link
+          fontSize="sm"
+          fontWeight="bold"
+          color="snowWhite"
+          href="#"
+          _active={{ color: "orange", textDecoration: "none" }}
+          _focus={{ color: "orange", boxShadow: "none" }}
+          _hover={{ color: "orange" }}
+        >
+          Contact Us
+        </Link>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 

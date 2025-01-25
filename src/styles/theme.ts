@@ -13,6 +13,12 @@ export const system = createSystem(defaultConfig, {
         heading: { value: `'Figtree', sans-serif` },
         body: { value: `'Figtree', sans-serif` },
       },
+      colors: {
+        tealBlue: { value: "#002626" },
+        snowWhite: { value: "#B9B8B6" },
+        orange: { value: "#FFA500" },
+        darkBronze: { value: "#805300" },
+      },
     },
   },
 });
