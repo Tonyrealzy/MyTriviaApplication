@@ -25,6 +25,7 @@ import {
 } from "../components/ui/progress-circle";
 import { toaster } from "../components/ui/toaster";
 import { useNavigate } from "react-router-dom";
+import { decodeHtml } from "../services/formatter/responseFormatter";
 
 const GamePage: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,18 +40,20 @@ const GamePage: React.FC = () => {
   const handleNext = () => {
     if (currentIndex >= 9) {
       if (score >= 5) {
+        dispatch(resetQuestions());
+        navigate("/");
         toaster.create({
           title: `You scored ${score} out of 10!`,
           type: "success",
         });
       } else {
+        dispatch(resetQuestions());
+        navigate("/");
         toaster.create({
           title: `You scored ${score} out of 10!`,
           type: "error",
         });
       }
-      dispatch(resetQuestions());
-      navigate("/");
     } else {
       if (optionChosen === questions[currentIndex]?.correct_answer) {
         toaster.create({
@@ -178,7 +181,7 @@ const GamePage: React.FC = () => {
           </HStack>
           <Box p={6} borderWidth={1} borderRadius="lg" mb={6}>
             <Text fontSize="xl" fontWeight="bold">
-              {questions[currentIndex]?.question}
+              {decodeHtml(questions[currentIndex]?.question)}
             </Text>
             <RadioGroup
               colorPalette="green"
@@ -192,7 +195,7 @@ const GamePage: React.FC = () => {
               <HStack gap={8}>
                 {options.map((option, index) => (
                   <Radio key={index} value={option}>
-                    {option}
+                    {decodeHtml(option)}
                   </Radio>
                 ))}
               </HStack>
