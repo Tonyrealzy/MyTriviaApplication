@@ -50,7 +50,6 @@ const RightSection: React.FC<RightSectionProps> = ({
       type: "error",
     });
   } else if (data?.results) {
-    logger(data?.results);
     dispatch(setQuestions(data?.results));
     navigate("/start");
   }

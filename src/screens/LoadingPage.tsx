@@ -15,7 +15,7 @@ const LoadingPage: React.FC = () => {
         justifyContent="center"
         alignItems="center"
         h="full"
-        marginTop={20}
+        marginTop={32}
       >
         <ProgressCircleRoot value={null} size="lg" colorPalette="teal">
           <ProgressCircleRing cap="round" />

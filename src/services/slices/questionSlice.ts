@@ -12,11 +12,13 @@ interface Question {
 interface QuestionState {
   questions: Question[];
   currentIndex: number;
+  score: number;
 }
 
 const initialState: QuestionState = {
   questions: [],
   currentIndex: 0,
+  score: 0,
 };
 
 const questionSlice = createSlice({
@@ -26,6 +28,10 @@ const questionSlice = createSlice({
     setQuestions(state, action: PayloadAction<Question[]>) {
       state.questions = action.payload;
       state.currentIndex = 0;
+      state.score = 0;
+    },
+    updateScore(state, action: PayloadAction<number>) {
+      state.score += action.payload;
     },
     nextQuestion(state) {
       if (state.currentIndex < state.questions.length - 1) {
@@ -35,10 +41,11 @@ const questionSlice = createSlice({
     resetQuestions(state) {
       state.questions = [];
       state.currentIndex = 0;
+      state.score = 0;
     },
   },
 });
 
 export default questionSlice.reducer;
-export const { setQuestions, nextQuestion, resetQuestions } =
+export const { setQuestions, nextQuestion, resetQuestions, updateScore } =
   questionSlice.actions;

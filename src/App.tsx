@@ -13,13 +13,13 @@ function App() {
       <Suspense fallback={<LoadingPage />}>
         <Routes>
           <Route path="" element={<Layout />}>
-            {/* <Route path="/" element={<LoadingPage />} /> */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/start" element={<GamePage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Suspense>
+z
     </BrowserRouter>
   );
 }
