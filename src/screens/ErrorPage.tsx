@@ -4,7 +4,7 @@ import { GameBg } from "../assets/images";
 import { Container, Button, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-const NotFound: React.FC = () => {
+const ErrorPage: React.FC = () => {
   const navigate = useNavigate();
   return (
     <LayeredBackground url={`${GameBg}`}>
@@ -17,7 +17,7 @@ const NotFound: React.FC = () => {
         w="100%"
       >
         <Text fontWeight="bold" fontSize="4xl" color="snowWhite">
-          Sorry, the page you are looking for does not exist.
+          Ooppsss! An error occurred...
         </Text>
         <Button
           bg="orange"
@@ -49,4 +49,4 @@ const NotFound: React.FC = () => {
   );
 };
 
-export default NotFound;
+export default ErrorPage;

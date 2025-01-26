@@ -9,9 +9,10 @@ const GameLayer: React.FC<GameLayerProps> = ({ children }) => {
     <Box
       h="400px"
       w="800px"
-      backgroundColor="gray"
+      backgroundColor="blackAlpha.700"
       mx="auto"
       display="flex"
+      borderRadius={20}
       justifyItems="center"
       alignItems="center"
     >

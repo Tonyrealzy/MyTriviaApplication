@@ -19,8 +19,7 @@ import { useLazyGetByParamsQuery } from "../../services/api/apiSlice";
 import { toaster } from "../ui/toaster";
 import { ProgressCircleRing, ProgressCircleRoot } from "../ui/progress-circle";
 import { logger } from "../../services/logger";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@reduxjs/toolkit/query";
+import { useDispatch } from "react-redux";
 import { setQuestions } from "../../services/slices/questionSlice";
 
 interface RightSectionProps {
@@ -43,14 +42,6 @@ const RightSection: React.FC<RightSectionProps> = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [triggerQuery, { data, error, isLoading }] = useLazyGetByParamsQuery();
-
-  // const { questions, currentIndex } = useSelector(
-  //   (state: any) => state.questions
-  // );
-  // logger(questions, currentIndex);
-  // const handleNext = () => {
-  //   dispatch(nextQuestion());
-  // };
 
   if (error) {
     logger(error);
