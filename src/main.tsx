@@ -7,7 +7,12 @@ import { Provider } from "react-redux";
 import store, { persistor } from "./store/index.ts";
 import { system } from "./styles/theme.ts";
 import { Toaster } from "./components/ui/toaster.tsx";
+import disableDevtool from "disable-devtool";
 import { PersistGate } from "redux-persist/integration/react";
+
+if (import.meta.env.VITE_APP_ENV !== "development") {
+  disableDevtool();
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
