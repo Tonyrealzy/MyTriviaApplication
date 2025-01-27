@@ -11,8 +11,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import HamburgerIcon from "../../assets/svgs/HamburgerIcon";
-import CloseIcon from "../../assets/svgs/CloseIcon";
+// import HamburgerIcon from "../../assets/svgs/HamburgerIcon";
+// import CloseIcon from "../../assets/svgs/CloseIcon";
 
 export interface Height {
   height: string;
