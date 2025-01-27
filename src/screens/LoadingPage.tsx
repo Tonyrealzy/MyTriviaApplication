@@ -1,6 +1,4 @@
 import React from "react";
-import LayeredBackground from "./layers/LayeredBackground";
-import { GameBg } from "../assets/images";
 import {
   ProgressCircleRing,
   ProgressCircleRoot,
