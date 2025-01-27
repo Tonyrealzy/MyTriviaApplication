@@ -3,10 +3,11 @@ import { createSystem, defaultConfig } from "@chakra-ui/react";
 export const system = createSystem(defaultConfig, {
   theme: {
     breakpoints: {
-      sm: "320px",
+      base: '0px',
+      sm: "480px",
       md: "768px",
-      lg: "960px",
-      xl: "1200px",
+      lg: "992px",
+      xl: "1280px",
     },
     tokens: {
       fonts: {

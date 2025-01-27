@@ -1,23 +1,20 @@
 import React from "react";
-import LayeredBackground from "./layers/LayeredBackground";
-import { GameBg } from "../assets/images";
-import { Container, Button, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Box, Container, Button, Text } from "@chakra-ui/react";
 
-const NotFound: React.FC = () => {
-  const navigate = useNavigate();
+const ErrorFallback: React.FC = () => {
   return (
-    <LayeredBackground url={`${GameBg}`}>
+    <Box bg="rgba(0, 0, 0, 0.6)" width="100vw" height="100vh">
       <Container
         display="flex"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        h="full"
+        color="snowWhite"
+        h="100%"
         w="100%"
       >
-        <Text fontWeight="bold" fontSize="4xl" color="white" mt={'12'}>
-          Sorry, the page you are looking for does not exist.
+        <Text fontWeight="bold" fontSize="4xl" color="white">
+          Ooppsss! An error occurred...
         </Text>
         <Button
           bg="orange"
@@ -40,13 +37,13 @@ const NotFound: React.FC = () => {
             color: "snowWhite",
             boxShadow: "none",
           }}
-          onClick={() => navigate("/")}
+          onClick={() => window.location.replace("/")}
         >
           Back to Home
         </Button>
       </Container>
-    </LayeredBackground>
+    </Box>
   );
 };
 
-export default NotFound;
+export default ErrorFallback;

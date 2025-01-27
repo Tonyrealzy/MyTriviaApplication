@@ -1,6 +1,4 @@
 import React from "react";
-import LayeredBackground from "./layers/LayeredBackground";
-import { GameBg } from "../assets/images";
 import {
   ProgressCircleRing,
   ProgressCircleRoot,
@@ -9,19 +7,18 @@ import { Container } from "@chakra-ui/react";
 
 const LoadingPage: React.FC = () => {
   return (
-    <LayeredBackground url={`${GameBg}`}>
       <Container
         display="flex"
         justifyContent="center"
         alignItems="center"
-        h="full"
-        marginTop={32}
+        h="100vh"
+        w='100vw'
+        marginTop={{base:4, md: 32}}
       >
         <ProgressCircleRoot value={null} size="lg" colorPalette="teal">
           <ProgressCircleRing cap="round" />
         </ProgressCircleRoot>
       </Container>
-    </LayeredBackground>
   );
 };
 

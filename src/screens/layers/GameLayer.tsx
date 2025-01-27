@@ -7,8 +7,8 @@ interface GameLayerProps {
 const GameLayer: React.FC<GameLayerProps> = ({ children }) => {
   return (
     <Box
-      h="400px"
-      w="800px"
+      h={{ base: "80%", md: "450px" }}
+      w={{ base: "100%", md: "80%", lg: "800px" }}
       backgroundColor="blackAlpha.700"
       mx="auto"
       display="flex"

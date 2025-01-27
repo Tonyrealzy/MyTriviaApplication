@@ -13,12 +13,14 @@ interface QuestionState {
   questions: Question[];
   currentIndex: number;
   score: number;
+  apiCalled: boolean;
 }
 
 const initialState: QuestionState = {
   questions: [],
   currentIndex: 0,
   score: 0,
+  apiCalled: false,
 };
 
 const questionSlice = createSlice({
@@ -29,6 +31,7 @@ const questionSlice = createSlice({
       state.questions = action.payload;
       state.currentIndex = 0;
       state.score = 0;
+      state.apiCalled = true;
     },
     updateScore(state, action: PayloadAction<number>) {
       state.score += action.payload;
@@ -42,6 +45,7 @@ const questionSlice = createSlice({
       state.questions = [];
       state.currentIndex = 0;
       state.score = 0;
+      state.apiCalled = false;
     },
   },
 });

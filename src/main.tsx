@@ -9,6 +9,7 @@ import { system } from "./styles/theme.ts";
 import { Toaster } from "./components/ui/toaster.tsx";
 import disableDevtool from "disable-devtool";
 import { PersistGate } from "redux-persist/integration/react";
+import ErrorBoundary from "./screens/ErrorBoundary.tsx";
 
 if (import.meta.env.VITE_APP_ENV !== "development") {
   disableDevtool();
@@ -20,7 +21,9 @@ createRoot(document.getElementById("root")!).render(
       <PersistGate loading={null} persistor={persistor}>
         <ChakraProvider value={system}>
           <Toaster />
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </ChakraProvider>
       </PersistGate>
     </Provider>

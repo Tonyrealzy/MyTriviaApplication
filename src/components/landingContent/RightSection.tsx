@@ -81,12 +81,12 @@ const RightSection: React.FC<RightSectionProps> = ({
   };
 
   return (
-    <Container w="50%" color="snowWhite">
+    <Container w={{ base: "100%", md: "50%" }} color="snowWhite">
       <Box mb={4}>
         <SelectRoot
           collection={categoryTypes}
           size="sm"
-          width="320px"
+          width={{ base: "full", md: "320px" }}
           value={category}
           onValueChange={(e) => {
             setCategory(e.value);
@@ -109,7 +109,7 @@ const RightSection: React.FC<RightSectionProps> = ({
         <SelectRoot
           collection={difficultyLevels}
           size="sm"
-          width="320px"
+          width={{ base: "full", md: "320px" }}
           value={difficulty}
           onValueChange={(e) => {
             setDifficulty(e.value);
@@ -152,7 +152,7 @@ const RightSection: React.FC<RightSectionProps> = ({
         color="white"
         fontSize="lg"
         marginTop="15px"
-        width="320px"
+        width={{ base: "full", md: "320px" }}
         height="50px"
         _focus={{
           backgroundColor: "transparent",
