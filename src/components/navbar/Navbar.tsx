@@ -41,18 +41,19 @@ const Navbar: React.FC<Height> = ({ height }) => {
               <IconButton
                 aria-label="Open Menu"
                 variant="outline"
-                bg="orange"
+                bg="transparent"
                 onClick={onToggle}
+                mx={2}
               >
-                {open ? (
+                {/* {open ? (
                   <CloseIcon width={10} height={10} />
                 ) : (
                   <HamburgerIcon width={10} height={10} />
-                )}
+                )} */}
               </IconButton>
             </Collapsible.Trigger>
             <Text
-              fontSize="28px"
+              fontSize="18px"
               fontWeight="bold"
               color="orange"
               fontStyle="italic"
