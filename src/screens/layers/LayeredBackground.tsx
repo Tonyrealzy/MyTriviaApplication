@@ -8,7 +8,7 @@ interface LinkProps {
 
 const LayeredBackground: React.FC<LinkProps> = ({ url, children }) => {
   return (
-    <Box w="100%" h="100vh" position="relative" overflow-x="hidden">
+    <Box w="100vw" h="100vh" position="relative" overflow-x="hidden">
       <Box
         bgImage={`url(${url})`}
         backgroundSize="cover"
@@ -41,7 +41,10 @@ const LayeredBackground: React.FC<LinkProps> = ({ url, children }) => {
         position="fixed"
         display="flex"
         gap={8}
-        top="25%"
+        top={{ base: "5%", xl: "15%" }}
+        h={"100%"}
+        overflowX={"hidden"}
+        overflowY={"auto"}
         zIndex="3"
       >
         {children}

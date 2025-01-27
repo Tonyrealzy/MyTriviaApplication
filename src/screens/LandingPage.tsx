@@ -4,7 +4,7 @@ import LandingContent from "../components/landingContent/LandingContent";
 
 const LandingPage: React.FC = () => {
   return (
-    <Box>
+    <Box position={'relative'}>
       <LandingContent />
     </Box>
   );

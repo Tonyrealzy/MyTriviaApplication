@@ -1,9 +1,6 @@
-import React, { ErrorInfo, ReactNode } from "react";
-import LayeredBackground from "./layers/LayeredBackground";
-import { GameBg } from "../assets/images";
-import { Container, Button, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 import { logger } from "../services/logger";
+import React, { Component, ReactNode } from "react";
+import ErrorFallback from "./layers/ErrorFallback";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -11,81 +8,28 @@ interface ErrorBoundaryProps {
 
 interface ErrorBoundaryState {
   hasError: boolean;
-  error: Error | null;
-  errorInfo: ErrorInfo | null;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = {
-      hasError: false,
-      error: null,
-      errorInfo: null,
-    };
+    this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return {
-      hasError: true,
-      error: error,
-      errorInfo: null,
-    };
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
   }
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    this.setState({
-      errorInfo: errorInfo,
-    });
-    logger(error, errorInfo);
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    logger("ErrorBoundary caught an error:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      const navigate = useNavigate();
-
-      return (
-        <LayeredBackground url={`${GameBg}`}>
-          <Container
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            h="full"
-            w="100%"
-          >
-            <Text fontWeight="bold" fontSize="4xl" color="snowWhite">
-              Ooppsss! An error occurred...
-            </Text>
-            <Button
-              bg="orange"
-              border="2px solid"
-              borderColor="orange"
-              color="white"
-              fontSize="lg"
-              marginTop="30px"
-              width="320px"
-              height="50px"
-              _focus={{
-                backgroundColor: "transparent",
-                borderColor: "snowWhite",
-                color: "snowWhite",
-                boxShadow: "none",
-              }}
-              _hover={{
-                backgroundColor: "transparent",
-                borderColor: "snowWhite",
-                color: "snowWhite",
-                boxShadow: "none",
-              }}
-              onClick={() => navigate("/")}
-            >
-              Back to Home
-            </Button>
-          </Container>
-        </LayeredBackground>
-      );
-      return this.props.children;
+      return <ErrorFallback />;
     }
+
+    return this.props.children;
   }
 }
 

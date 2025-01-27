@@ -5,6 +5,7 @@ import {
   Flex,
   HStack,
   Text,
+  useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
 import { Radio, RadioGroup } from "../components/ui/radio";
@@ -30,6 +31,7 @@ import { decodeHtml } from "../services/formatter/responseFormatter";
 const GamePage: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMobile = useBreakpointValue({ base: true, md: false });
   const [options, setOptions] = React.useState<string[]>([]);
   const [optionChosen, setOptionChosen] = React.useState<string>("");
   const { questions, currentIndex, score } = useSelector(
@@ -107,8 +109,8 @@ const GamePage: React.FC = () => {
   return (
     <LayeredBackground url={`${GameBg}`}>
       <GameLayer>
-        <Container color="snowWhite">
-          <HStack justifyContent={"space-between"} m={6}>
+        <Container color="snowWhite" alignItems={"center"}>
+          <HStack justifyContent={"space-between"} my={6}>
             <VStack
               align={"start"}
               flex={1}
@@ -116,10 +118,10 @@ const GamePage: React.FC = () => {
               justifyContent={"center"}
               w={"full"}
             >
-              <Text fontSize="lg" fontWeight="bold">
-                Category: {questions[currentIndex]?.category}
+              <Text fontSize={{ base: "sm", md: "lg" }} fontWeight="bold">
+                {questions[currentIndex]?.category}
               </Text>
-              <Text>
+              <Text fontSize={{ base: "xs", md: "md" }}>
                 Difficulty: {capitalise(questions[currentIndex]?.difficulty)}{" "}
               </Text>
             </VStack>
@@ -130,6 +132,7 @@ const GamePage: React.FC = () => {
               flex={1}
             >
               <Text
+                fontSize={{ base: "xs", md: "md" }}
                 fontWeight="bold"
                 display={"flex"}
                 justifyContent={"center"}
@@ -153,6 +156,7 @@ const GamePage: React.FC = () => {
               flex={1}
             >
               <Text
+                fontSize={{ base: "sm", md: "md" }}
                 fontWeight="bold"
                 display={"flex"}
                 justifyContent={"center"}
@@ -167,7 +171,7 @@ const GamePage: React.FC = () => {
                   bg={"teal.800"}
                   color={"white"}
                   fontWeight="bold"
-                  fontSize={"2xl"}
+                  fontSize={{ base: "xl", md: "2xl" }}
                   display={"flex"}
                   h={20}
                   w={20}
@@ -179,8 +183,14 @@ const GamePage: React.FC = () => {
               </Flex>
             </VStack>
           </HStack>
-          <Box p={6} borderWidth={1} borderRadius="lg" mb={6}>
-            <Text fontSize="xl" fontWeight="bold">
+          <Box
+            p={6}
+            borderWidth={1}
+            borderRadius="lg"
+            mb={6}
+            justifyItems={{ base: "start", md: "center" }}
+          >
+            <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold">
               {decodeHtml(questions[currentIndex]?.question)}
             </Text>
             <RadioGroup
@@ -191,22 +201,42 @@ const GamePage: React.FC = () => {
                 setOptionChosen(value);
               }}
               m={2}
+              justifyItems={{ base: "start", md: "center" }}
             >
-              <HStack gap={8}>
-                {options.map((option, index) => (
-                  <Radio key={index} value={option}>
-                    {decodeHtml(option)}
-                  </Radio>
-                ))}
-              </HStack>
+              {isMobile ? (
+                <VStack gap={4}>
+                  {options.map((option, index) => (
+                    <Radio key={index} value={option}>
+                      {decodeHtml(option)}
+                    </Radio>
+                  ))}
+                </VStack>
+              ) : (
+                <HStack gap={8}>
+                  {options.map((option, index) => (
+                    <Radio key={index} value={option}>
+                      {decodeHtml(option)}
+                    </Radio>
+                  ))}
+                </HStack>
+              )}
             </RadioGroup>
           </Box>
-          <HStack justify="space-between" w={"40%"} justifySelf={"center"}>
-            <Button w={32} color="white" bg={"orange"} onClick={onQuit}>
+          <HStack
+            justify="space-between"
+            w={{ base: "100%", md: "40%" }}
+            justifySelf={"center"}
+          >
+            <Button
+              w={{ base: 24, md: 32 }}
+              color="white"
+              bg={"orange"}
+              onClick={onQuit}
+            >
               Quit
             </Button>
             <Button
-              w={32}
+              w={{ base: 24, md: 32 }}
               color="white"
               bg={"orange"}
               onClick={handleNext}
